@@ -20,6 +20,18 @@ def test_calculate_distance():
 
 		assert expected_output == obeserved_output 
 
+
+def test_calculate_angle():
+	"""test function  that calculate_angle calculate what we expect"""
+	r1 = np.array([0.0, 0.0, -1.0])
+	r2 = np.array([0, 0, 0])
+	r3 = np.array([1.0, 0.0, 0.0])
+
+	expected_output = 90.0
+	observed_output = msf_2022b.calculate_angle(r1, r2, r3, degrees=True)
+
+	assert expected_output == observed_output
+
 def test_msf_2022b_imported():
     """Sample test, will always pass so long as import statement worked."""
     assert "msf_2022b" in sys.modules
