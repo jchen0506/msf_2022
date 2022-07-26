@@ -29,6 +29,7 @@ if __name__ == "__main__":
     print(canvas())
 
 
+from multiprocessing.sharedctypes import Value
 import os
 import numpy as np
 import matplotlib.pyplot as plt
@@ -181,18 +182,19 @@ def bond_histogram(bond_list, save_location=None, dpi=300, graph_min=0, graph_ma
     return ax
         
 def build_bond_list(coordinates, max_bond=1.5, min_bond=0):
-    
+		if min_bond < 0:
+			raise ValueError("bond distantce must be greater than or equal to 0")
     # Find the bonds in a molecule (set of coordinates) based on distance criteria.
-    bonds = {}
-    num_atoms = len(coordinates)
+		bonds = {}
+		num_atoms = len(coordinates)
 
-    for atom1 in range(num_atoms):
-        for atom2 in range(atom1, num_atoms):
-            distance = calculate_distance(coordinates[atom1], coordinates[atom2])
-            if distance > min_bond and distance < max_bond:
-                bonds[(atom1, atom2)] = distance
+		for atom1 in range(num_atoms):
+				for atom2 in range(atom1, num_atoms):
+						distance = calculate_distance(coordinates[atom1], coordinates[atom2])
+						if distance > min_bond and distance < max_bond:
+								bonds[(atom1, atom2)] = distance
 
-    return bonds
+		return bonds
 
 atom_colors = {
     'H': 'white',
