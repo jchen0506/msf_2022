@@ -36,10 +36,10 @@ import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 
 
-def calculate_distance(rA, rB):
+def calculate_distance(rA: np.ndarray, rB: np.ndarray) -> np.floating:
     # This function calculates the distance between two points given as numpy arrays.
     d=(rA-rB)
-    dist=np.linalg.norm(d)
+    dist : np.floating =np.linalg.norm(d)
     return dist
 
 def open_pdb(f_loc):
