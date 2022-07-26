@@ -11,6 +11,18 @@ import numpy as np
 
 import msf_2022b
 
+@pytest.fixture
+def methane_molecule():
+	symbols = np.array(["C", "H", "H", "H", "H"])
+	coordinates =np.array([
+		[1, 1, 1],
+		[2.4, 1, 1],
+		[-0.4, 1, 1],
+		[1, 1, 2.4],
+		[1, 1, -0.4]
+	])
+
+	return symbols, coordinates
 
 def test_calculate_distance():
 		"""Test that the calculate_distance function caculates what we expect"""
@@ -45,12 +57,9 @@ def test_msf_2022b_imported():
     """Sample test, will always pass so long as import statement worked."""
     assert "msf_2022b" in sys.modules
 
-def test_calculate_distance_error():
+def test_build_bond_list_error(methane_molecule):
 
-	coordinates =np.array(
-		[[0, 0, 0],
-		[0, 1.0, 0],
-		[1, 1, 1]]
-	)
+	coordinates =methane_molecule[1]
+	
 	with pytest.raises(ValueError):
 		msf_2022b.build_bond_list(coordinates, min_bond = -1)
