@@ -37,7 +37,27 @@ from mpl_toolkits.mplot3d import Axes3D
 
 
 def calculate_distance(rA: np.ndarray, rB: np.ndarray) -> np.floating:
-    # This function calculates the distance between two points given as numpy arrays.
+    """
+		Calculate the distance between 2 points.
+
+		Parameters
+		----------
+		rA, rB : np.ndarray
+			The coordinates of each point.
+		
+		Returns
+		-------
+		dist: np.floating
+			The distance between 2 points
+
+		Examples
+		--------
+		>>> r1 = np.array([0, 0, 0])
+		>>> r2 = np.array([0, 1.0, 0])
+		>>> calculate_distance(r1, r2)
+		1.0
+		
+		"""
     d=(rA-rB)
     dist : np.floating =np.linalg.norm(d)
     return dist
